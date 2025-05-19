@@ -1,0 +1,9 @@
+version: '3'
+services: 
+  embedded_rust:
+    build: .
+    container_name: embedded_rust
+    tty: true
+    volumes: 
+      - ../:/app
+    working_dir: /app

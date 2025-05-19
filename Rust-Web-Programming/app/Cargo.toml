@@ -1,0 +1,26 @@
+[package]
+name = "rust-web-programming"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-web = "4"
+serde_json = "1.0.117"
+serde = { version = "1.0.203", features = ["derive"] }
+actix-service = "2.0.2"
+futures = "0.3.30"
+diesel = { version = "2.2.2" , features = ["postgres", "chrono", "r2d2"] }
+dotenv = "0.15.0"
+chrono = "0.4.38"
+yaml-rust2 = "0.8"
+once_cell = "1.19.0"
+bcrypt = "0.15.1"
+
+[dependencies.uuid]
+version = "1.10.0"
+features = [
+  "v4",
+  "serde"
+]

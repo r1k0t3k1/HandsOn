@@ -1,0 +1,27 @@
+FROM rust:latest
+
+RUN apt update
+
+#必要パッケージのインストール 
+RUN apt install -y\
+    git \
+    minicom \
+    libusb-1.0-0-dev \
+    libsdl2-dev \
+    libssl-dev
+
+# cargoのサブコマンドのインストール
+RUN cargo install cargo-generate hf2-cli cargo-hf2 
+
+# udev rulesの設定
+# sudo権限なしでcargo-hf2を実行するため
+COPY ./99-seeed-boards.rules /etc/udev/rules.d/99-seeed-boards.rules
+
+# udevルールをリロード
+RUN udevadm control --reload-rules
+
+# sudo権限無しでUSBシリアルの読み書きをできるようにユーザーをdialoutグループに追加
+RUN adduser $USER dialout
+
+
+
